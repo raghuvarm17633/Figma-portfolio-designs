@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaddam Raghu Varma – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --card: #1a1a26;
+    --border: #2a2a3e;
+    --accent: #7c6af7;
+    --accent2: #e55b7d;
+    --accent3: #3ecfb2;
+    --text: #eaeaf4;
+    --muted: #8888aa;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.875rem; font-weight: 400; letter-spacing: 0.04em;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--accent); color: #fff;
+    padding: 9px 22px; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 500; text-decoration: none;
+    transition: opacity .2s;
+  }
+  .nav-cta:hover { opacity: .85; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-blob {
+    position: absolute; border-radius: 50%; filter: blur(100px); opacity: .35;
+    pointer-events: none;
+  }
+  .blob1 { width: 600px; height: 600px; background: var(--accent); top: -100px; right: -100px; }
+  .blob2 { width: 400px; height: 400px; background: var(--accent2); bottom: 0; left: -80px; }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1100px; margin: auto; width: 100%;
+    display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(124,106,247,.15); border: 1px solid rgba(124,106,247,.3);
+    color: var(--accent); font-size: 0.75rem; letter-spacing: .12em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 50px; margin-bottom: 24px;
+    animation: fadeUp .6s ease both;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.3} }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800; line-height: 1.05;
+    letter-spacing: -0.03em;
+    animation: fadeUp .7s .1s ease both;
+  }
+  h1 .line2 { color: var(--accent); }
+
+  .hero-sub {
+    margin-top: 20px; max-width: 520px;
+    color: var(--muted); font-size: 1rem; line-height: 1.7;
+    animation: fadeUp .7s .2s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 14px; margin-top: 36px; flex-wrap: wrap;
+    animation: fadeUp .7s .3s ease both;
+  }
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    padding: 13px 28px; border-radius: 50px;
+    font-size: 0.9rem; font-weight: 500; text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 0 0 0 rgba(124,106,247,.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,106,247,.4); }
+  .btn-ghost {
+    border: 1px solid var(--border); color: var(--text);
+    padding: 13px 28px; border-radius: 50px;
+    font-size: 0.9rem; text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .btn-ghost:hover { border-color: var(--accent); background: rgba(124,106,247,.08); }
+
+  .hero-stats {
+    display: flex; flex-direction: column; gap: 24px;
+    animation: fadeUp .7s .4s ease both;
+  }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 20px 28px; border-radius: 16px;
+    text-align: center; min-width: 140px;
+  }
+  .stat-card .num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800; color: var(--white);
+  }
+  .stat-card .lbl { font-size: 0.75rem; color: var(--muted); margin-top: 4px; letter-spacing: .05em; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 60px; }
+  .container { max-width: 1100px; margin: auto; }
+
+  .sec-label {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: .15em;
+    color: var(--accent); margin-bottom: 12px; font-weight: 500;
+  }
+  .sec-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700; letter-spacing: -0.02em; margin-bottom: 48px;
+    color: var(--white);
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--surface); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+  }
+  .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 16px; font-size: 0.97rem; }
+  .about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .tag {
+    background: rgba(124,106,247,.12); border: 1px solid rgba(124,106,247,.25);
+    color: var(--accent); padding: 6px 14px; border-radius: 50px;
+    font-size: 0.8rem;
+  }
+
+  .info-list { display: flex; flex-direction: column; gap: 16px; }
+  .info-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px; background: var(--card); border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+  .info-row .key { color: var(--muted); font-size: 0.82rem; }
+  .info-row .val { color: var(--white); font-size: 0.9rem; font-weight: 500; }
+
+  /* ── EXPERIENCE ── */
+  .exp-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 36px; position: relative;
+    overflow: hidden;
+  }
+  .exp-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    border-radius: 4px 0 0 4px;
+  }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .exp-role { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--white); }
+  .exp-company { color: var(--accent); font-size: 0.9rem; margin-top: 4px; }
+  .exp-date {
+    background: rgba(62,207,178,.1); border: 1px solid rgba(62,207,178,.25);
+    color: var(--accent3); font-size: 0.78rem; padding: 5px 12px; border-radius: 50px;
+    white-space: nowrap;
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .exp-bullets li {
+    color: var(--muted); font-size: 0.9rem; line-height: 1.6;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .exp-bullets li::before {
+    content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--surface); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .skill-item {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px;
+    transition: border-color .2s, transform .2s;
+    cursor: default;
+  }
+  .skill-item:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .skill-icon { font-size: 1.5rem; margin-bottom: 10px; }
+  .skill-name { color: var(--white); font-size: 0.9rem; font-weight: 500; margin-bottom: 4px; }
+  .skill-desc { color: var(--muted); font-size: 0.78rem; line-height: 1.5; }
+
+  /* ── EDUCATION ── */
+  .edu-timeline { display: flex; flex-direction: column; gap: 20px; }
+  .edu-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px 28px;
+    display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center;
+  }
+  .edu-degree { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--white); font-size: 1rem; }
+  .edu-institution { color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+  .edu-meta { text-align: right; }
+  .edu-year { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--accent); font-size: 1.1rem; }
+  .edu-cgpa { color: var(--accent3); font-size: 0.8rem; margin-top: 4px; }
+
+  /* ── PROJECT ── */
+  .proj-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 36px;
+    display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start;
+  }
+  .proj-title { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--white); font-size: 1.15rem; }
+  .proj-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-top: 10px; }
+  .proj-badge {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff; font-size: 0.78rem; font-weight: 600;
+    padding: 6px 14px; border-radius: 50px; white-space: nowrap;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--surface); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .contact-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; display: flex; gap: 18px; align-items: flex-start;
+    transition: border-color .2s;
+  }
+  .contact-card:hover { border-color: var(--accent); }
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(124,106,247,.15); display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .contact-label { color: var(--muted); font-size: 0.78rem; margin-bottom: 4px; letter-spacing: .05em; text-transform: uppercase; }
+  .contact-val { color: var(--white); font-size: 0.9rem; word-break: break-all; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 32px 60px;
+    border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 0.82rem;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    section { padding: 70px 20px; }
+    #hero { padding: 100px 20px 60px; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: row; flex-wrap: wrap; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .proj-card { grid-template-columns: 1fr; }
+    .edu-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">G.<span>Raghu</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:raghuvarma17633@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag"><span class="dot"></span> Available for Opportunities</div>
+      <h1>
+        Gaddam<br>
+        <span class="line2">Raghu Varma</span>
+      </h1>
+      <p class="hero-sub">
+        Computer Science Engineer & Data Annotator with hands-on experience in data labeling, validation, and AI dataset quality. Passionate about building smarter data pipelines and applying CS fundamentals to real-world problems.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Get In Touch →</a>
+        <a href="#projects" class="btn-ghost">View Projects</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <div class="num">7.0</div>
+        <div class="lbl">B.Tech CGPA</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">9+</div>
+        <div class="lbl">Months Exp</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">3</div>
+        <div class="lbl">Languages</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="sec-label">About Me</div>
+    <h2 class="sec-title">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a Computer Science & Engineering graduate from Chalapathi Institute of Engineering and Technology (2024), with a strong foundation in CS fundamentals and a genuine passion for data-driven technologies.</p>
+        <p>My professional journey has been focused on data annotation and validation at TAO Digital, Hyderabad, where I honed my skills in image annotation, text annotation, transcription, and quality assurance across large datasets.</p>
+        <p>I'm a quick learner, self-motivated, and thrive in collaborative environments. I'm now looking to take the next step in my career — applying my technical skills in a progressive organization that values growth and innovation.</p>
+        <div class="about-tags">
+          <span class="tag">Data Annotation</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">Python</span>
+          <span class="tag">Problem Solving</span>
+          <span class="tag">Quality Assurance</span>
+          <span class="tag">Team Collaboration</span>
+        </div>
+      </div>
+      <div class="info-list">
+        <div class="info-row"><span class="key">📅 Date of Birth</span><span class="val">18 Feb 2003</span></div>
+        <div class="info-row"><span class="key">🌏 Nationality</span><span class="val">Indian</span></div>
+        <div class="info-row"><span class="key">📍 Location</span><span class="val">Hyderabad, India</span></div>
+        <div class="info-row"><span class="key">🗣 Languages</span><span class="val">Telugu · Hindi · English</span></div>
+        <div class="info-row"><span class="key">🎯 Interests</span><span class="val">Travel · Sports · Reading</span></div>
+        <div class="info-row"><span class="key">📧 Email</span><span class="val">raghuvarma17633@gmail.com</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="sec-label">Work History</div>
+    <h2 class="sec-title">Experience</h2>
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <div class="exp-role">Trainee Data Analyst (Data Annotator)</div>
+          <div class="exp-company">TAO Digital — Hyderabad</div>
+        </div>
+        <div class="exp-date">Aug 2025 – May 2026</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Annotated and labeled large-scale datasets for machine learning and AI training pipelines.</li>
+        <li>Performed image annotation, text annotation, and transcription tasks at high accuracy.</li>
+        <li>Conducted data validation and quality checks to ensure high accuracy standards across projects.</li>
+        <li>Followed annotation guidelines, SOPs, and confidentiality policies consistently.</li>
+        <li>Maintained productivity and accuracy targets within project timelines.</li>
+        <li>Collaborated with team leads and quality analysts to continuously improve dataset quality.</li>
+        <li>Documented completed tasks and submitted progress reports as required by management.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="sec-label">What I Do</div>
+    <h2 class="sec-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-item"><div class="skill-icon">🏷️</div><div class="skill-name">Data Annotation</div><div class="skill-desc">Image, text & transcription annotation at scale</div></div>
+      <div class="skill-item"><div class="skill-icon">✅</div><div class="skill-name">Data Validation</div><div class="skill-desc">Quality checks & accuracy assurance</div></div>
+      <div class="skill-item"><div class="skill-icon">🖼️</div><div class="skill-name">Image Annotation</div><div class="skill-desc">Bounding boxes, masking & segmentation</div></div>
+      <div class="skill-item"><div class="skill-icon">💻</div><div class="skill-name">CS Fundamentals</div><div class="skill-desc">Strong foundation in algorithms & data structures</div></div>
+      <div class="skill-item"><div class="skill-icon">🧩</div><div class="skill-name">Problem Solving</div><div class="skill-desc">Logical & analytical approach to challenges</div></div>
+      <div class="skill-item"><div class="skill-icon">🤝</div><div class="skill-name">Customer Relations</div><div class="skill-desc">Customer success, service & operations</div></div>
+      <div class="skill-item"><div class="skill-icon">⚡</div><div class="skill-name">Adaptability</div><div class="skill-desc">Quick learner, thrives in new environments</div></div>
+      <div class="skill-item"><div class="skill-icon">📊</div><div class="skill-name">Data Labeling</div><div class="skill-desc">Structured labeling across diverse datasets</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="sec-label">Academic Background</div>
+    <h2 class="sec-title">Education</h2>
+    <div class="edu-timeline">
+      <div class="edu-card">
+        <div><div class="edu-degree">Computer Science & Engineering (B.Tech)</div><div class="edu-institution">Chalapathi Institute of Engineering and Technology</div></div>
+        <div class="edu-meta"><div class="edu-year">2024</div><div class="edu-cgpa">7.0 CGPA</div></div>
+      </div>
+      <div class="edu-card">
+        <div><div class="edu-degree">Board of Intermediate Education</div><div class="edu-institution">Sri Chaitanya Junior College</div></div>
+        <div class="edu-meta"><div class="edu-year">2020</div><div class="edu-cgpa">7.3 CGPA</div></div>
+      </div>
+      <div class="edu-card">
+        <div><div class="edu-degree">Board of Secondary Education (SSC)</div><div class="edu-institution">Keshava Reddy Em HS</div></div>
+        <div class="edu-meta"><div class="edu-year">2018</div><div class="edu-cgpa">8.4 CGPA</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="sec-label">Portfolio</div>
+    <h2 class="sec-title">Projects</h2>
+    <div class="proj-card">
+      <div>
+        <div class="proj-title">Flipkart Reviews Sentiment Analysis Using Deep Learning</div>
+        <p class="proj-desc">
+          Developed a deep learning model to perform sentiment analysis on Flipkart product reviews. The project involved collecting and preprocessing review data, training a neural network classifier to distinguish positive, neutral, and negative sentiments, and evaluating performance against baseline NLP methods.
+        </p>
+      </div>
+      <div class="proj-badge">Deep Learning</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-label">Get In Touch</div>
+    <h2 class="sec-title">Contact Me</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <div><div class="contact-label">Email</div><div class="contact-val">raghuvarma17633@gmail.com</div></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📱</div>
+        <div><div class="contact-label">Phone</div><div class="contact-val">+91 9392614541</div></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <div><div class="contact-label">Address</div><div class="contact-val">Ambavaram, Giddalur, Prakasam, AP 523357</div></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🔗</div>
+        <div><div class="contact-label">Links</div><div class="contact-val">linktr.ee/iamraghuvarma</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Gaddam Raghu Varma — Designed with passion. Built with code.</p>
+</footer>
+
+</body>
+</html>
